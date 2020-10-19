@@ -1,0 +1,40 @@
+$base-theme: Bootstrap;
+
+$skin-name: darkair;
+$swatch-name: Bootstrap;
+
+$black: #001011;
+$primary: #FBE137;
+$yellow: #F0D105;
+$red: #B80C09;
+$blue: #1E2EDE;
+$green: #36AB45;
+$cyan: #4DA897;
+
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+$body-bg: $black;
+$dropdown-bg: $gray-400;
+$dropdown-color: $white;
+$dropdown-border-color: rgba($black, 1);
+$dropdown-padding-y: .75rem;
+$headings-color: $gray-200;
+$headings-font-weight: 600;
+$navbar-padding-y: $spacer / 1.5;
+$paragraph-margin-bottom: 1.3rem;
+$yiq-text-dark: $gray-100;
+$enable-shadows: true;
+$body-color: $gray-100;
+$jumbotron-bg: $gray-600;
+
+$border-radius: 1.25rem;
+
+.form-control {
+  border-radius: $border-radius;
+}
+
+.btn {
+  border-radius: .75rem;
+}

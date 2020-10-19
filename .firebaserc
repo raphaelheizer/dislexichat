@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "whastapp-53301"
+  },
+  "targets": {
+    "whastapp-53301": {
+      "hosting": {
+        "dislexichat": [
+          "whastapp-53301"
+        ]
+      }
+    }
+  }
+}

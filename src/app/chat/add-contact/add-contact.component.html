@@ -1,0 +1,16 @@
+<div class="container-fluid bg-dark pb-4 pt-3 pl-3 pr-3">
+  <h5>Adicionar contato</h5>
+  <p>Só precisa informar o e-mail</p>
+
+  <input #addct class="form-control" type="text" (keydown.enter)="addContact(addct.value)">
+
+  <div class="alert alert-danger mt-2" role="alert" *ngIf="requestHasErrors">
+    Ops! Usuário não encontrado!
+  </div>
+
+  <div class="d-flex pt-4 flex-row-reverse">
+    <button type="button" class="btn btn-outline-primary" (click)="addContact(addct.value)">Adicionar</button>
+    <button type="button" class="btn btn-secondary mr-1" (click)="closeModal()">Cancelar</button>
+  </div>
+
+</div>

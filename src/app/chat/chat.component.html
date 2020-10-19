@@ -1,0 +1,74 @@
+<div class="container-fluid d-flex p-0 p-lg-5" id="mainframe">
+  <div class="flex-row" id="left-panel">
+
+    <div class="bg-chat-bg top-bar">
+      <button class="btn btn-outline-primary btn-sm" (click)="addContact()">Adicionar</button>
+    </div>
+
+    <div id="contacts-body" class="overflow-auto">
+
+      <div id="contact-card" class="p-2 d-flex"
+           *ngFor="let contact of contacts | async"
+           (click)="openChat(contact)"
+          tabindex="0">
+
+        <img [src]="contact.fu" alt="null" width="48px" style="border-radius: 50%">
+        <div>
+          {{contact.dn}}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="d-flex flex-column" id="chat-frame">
+
+    <div class="bg-chat-bg top-bar">
+      <img class="img-avatar img-fluid" width="40px" [src]="user.photoURL" alt="profilepic">
+      {{user.displayName}}
+
+
+      <button class="btn btn-outline-primary float-right" (click)="logout()">Logout</button>
+    </div>
+
+
+    <div id="msg-body" class="overflow-auto" #chatbody>
+
+      <div *ngFor="let message of messages | async">
+
+        <div class="m-card m-card-self" *ngIf="(user.uid) === message.uid">
+          <strong>{{message.name}}</strong>
+          <br>
+          {{message.msg}}
+        </div>
+
+        <div class="m-card m-card-other" *ngIf="(user.uid) !== message.uid">
+          <strong>{{message.name}}</strong>
+          <br>
+          {{message.msg}}
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="bg-chat-bg d-flex" id="bottom-frame">
+
+      <div class="p-2 d-flex flex-grow-1">
+
+        <div class="bg-chat-bg text-centered vertical-centered"></div>
+
+        <form [formGroup]="msgGroup" class="d-flex flex-grow-1 d-flex align-items-center">
+          <input formControlName="msgInput" type="text" class="form-control ml-2 mr-2" placeholder="Esreve auqi!!!!!"
+                 aria-label="Mensagem" (keydown.enter)="writeMessage()">
+          <button type="button" class="btn btn-outline-primary ml-2"
+                  (click)="writeMessage()">Enviar
+          </button>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
