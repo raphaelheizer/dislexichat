@@ -62,8 +62,8 @@ export class ContactDbService {
         }
 
         const data = (doc.docs.map(value => value.id))[0]; // ID do contato do usuário
-        this.angularFirestore.collection('chats').add({}).then(document => { // Adiciona um novo Chat em branco
-          const mewDocumentId = document.id; // ID do novo documento de chat criado
+
+        return this.angularFirestore.collection('chats').add({}).then(document => { // Adiciona um novo Chat em branco
 
           this.angularFirestore.collection('users').doc(selfUser.uid).collection('contacts') // Adiciona o id do chat ao usuário
             .doc(data).set({cid: document.id}, {merge: true}); // Faz um merge com o que está no documento
@@ -81,7 +81,6 @@ export class ContactDbService {
 
           return document.id; // Retorna o valor do chat novo
         });
-        return data;
       })
       .catch(e => console.error(e));
   }

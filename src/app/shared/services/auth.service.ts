@@ -23,7 +23,6 @@ export class AuthService {
     this.angularFireAuth.setPersistence(this.SESSION_PERSISTENCE_LOCAL)
       .then(() => {
       });
-
   }
 
   logout(): Promise<boolean> {

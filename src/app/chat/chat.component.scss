@@ -1,8 +1,5 @@
 @import "src/custom-styles";
 
-$chat-bg-color: $gray-900;
-$border-color-frame: lighten($chat-bg-color, 10%);
-
 #mainframe {
   height: 100vh;
 }
@@ -40,61 +37,26 @@ $border-color-frame: lighten($chat-bg-color, 10%);
 #contacts-body {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+#input-append-search-box {
+  background: transparent;
+  border: 1px solid $primary;
+  color: $primary;
 }
 
-::-webkit-scrollbar-thumb {
-  background: $secondary;
-  border-radius: 2rem;
-}
+#top-bar-append {
+  justify-content: space-evenly;
 
-::-webkit-scrollbar-track {
-  background: $chat-bg-color;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: lighten($secondary, 15%);
-}
-
-#contact-card {
-  cursor: pointer;
-  align-items: center;
-  border-bottom: 1px solid $border-color-frame;
-  height: 4rem;
-
-  *:not(:first-child) {
-    margin: 0 0 0 .75rem;
+  div {
+    flex-grow: 1;
+    border: 1px solid lighten($chat-bg-color, 10%);
+    text-align: center;
   }
-
-}
-
-#contact-card:hover {
-  background: $chat-bg-color
-}
-
-#contact-card:focus {
-  background: lighten($chat-bg-color, 10%);
-  outline: none;
 }
 
 .text-centered {
   text-align: center;
-}
-
-.top-bar {
-  border-top-right-radius: inherit;
-  border-top-left-radius: inherit;
-  padding: .75rem;
-  height: 4rem;
-  border-bottom: 1px solid $border-color-frame;
-}
-
-.bg-chat-bg {
-  background-color: $chat-bg-color;
 }
 
 .img-avatar {

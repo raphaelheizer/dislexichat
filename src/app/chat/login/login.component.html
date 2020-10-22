@@ -1,23 +1,30 @@
 <div class="container-fluid p-0">
-  <nav class="navbar navbar-light bg-dark">
-    <a class="navbar-brand" href="#">DISLEXICAHT</a>
-    <button class="ml-5 btn btn-outline-primary" (click)="openLoginModal()">
-      Login
-    </button>
+
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Chat de Exemplo</a>
   </nav>
 
-  <div class="ml-5">
-    <h1 class="mb-2 mt-5">
-      Se você cehgou até aqui...
-    </h1>
-    <h3 class="ml-4 mb-3 mt-4">
-      Então provavelmente perdido...
-    </h3>
-    <p class="ml-5 mb-5 mt-5">
-      Mas nõa há problema, pois todos nós etamos.
-    </p>
-    <br><br>
-    <h3 class="ml-5">Sim.</h3>
-    <p class="ml-4">Faz loign la em cima, vai!</p>
+  <div class="d-flex row" id="center-block">
+    <div class="p-5 p-sm-5 p-md-3 p-lg-3 p-xl-3 col-12 col-sm-8 col-md-5 col-lg-5 col-xl-4 text-center" id="login-mod">
+
+      <div class="d-flex justify-content-center mb-5">
+        <h3>Fazer login</h3>
+      </div>
+
+      <button type="button" class="btn btn-block pb-2 pt-2 mb-3 mt-3" id="googleBtn" (click)="googleLogin()">Google</button>
+
+      <p>ou</p>
+
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Email" aria-label="email">
+      </div>
+      <div class="input-group mb-3">
+        <input type="password" class="form-control" placeholder="Senha" aria-label="password">
+      </div>
+
+      <button class="btn btn-block btn-outline-primary mb-3 mt-3">Login</button>
+      <a [routerLink]="">Sem uma conta? Registrar</a>
+    </div>
   </div>
+
 </div>

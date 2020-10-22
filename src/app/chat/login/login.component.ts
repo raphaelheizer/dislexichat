@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ModalComponent} from './modal/modal.component';
 import {AuthService} from '../../shared/services/auth.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
@@ -37,8 +36,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.authState.unsubscribe();
   }
 
-  openLoginModal(): void {
-    this.modal.open(ModalComponent);
+  googleLogin(): void {
+    this.auth.loginWithGoogle()
+      .then(() => {
+        this.router.navigate(['chatroom'])
+          .catch(e => console.error(e));
+      })
+      .catch(e => console.error(e));
   }
 
 }

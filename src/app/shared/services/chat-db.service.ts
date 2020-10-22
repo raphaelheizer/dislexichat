@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {AuthService} from './auth.service';
-import {BehaviorSubject, Observable, of} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {Message} from '../interfaces/message';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {map, take} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {User} from 'firebase';
 
 @Injectable({
@@ -13,22 +12,28 @@ export class ChatDbService {
 
   constructor(
     public angularFirestore: AngularFirestore,
-    private auth: AuthService
   ) {
   }
 
-  private _messages: BehaviorSubject<Message>[];
+  private _messages = new BehaviorSubject<Message[]>([]);
+  get messages(): Observable<Message[]> {
+    return this._messages.asObservable();
+  }
 
-  getMessages(chatcode: string): Observable<Message[]> {
+  pushMessages(chatcode: string): void {
     if (!chatcode) {
-      return of([] as Message[]);
+      this._messages.next([] as Message[]);
+      return;
     }
-    return this.angularFirestore.collection('chats').doc(chatcode).collection('messages')
+
+    this.angularFirestore.collection('chats').doc(chatcode).collection('messages')
       .snapshotChanges()
       .pipe(
         map(doc => doc.map(value => value.payload.doc.data() as Message)),
         map(value => value.sort((a, b) => a.dat - b.dat))
-      );
+      ).subscribe(justFetchedMessages => {
+      this._messages.next(justFetchedMessages);
+    });
   }
 
   writeMessage(message: string, chatcode: string, user: User): Promise<void> {

@@ -1,0 +1,19 @@
+<div class="container-fluid p-0">
+
+  <div class="top-bar bg-chat-bg align-self-center flex-grow-1">
+    Contatos
+    <button class="btn btn-outline-primary float-right" (click)="dismissModal()">x</button>
+  </div>
+
+  <div id="contact-card" class="p-2 d-flex contact-card"
+       *ngFor="let contact of contacts | async"
+       (click)="openChat(contact)"
+       tabindex="0">
+
+    <img [src]="contact.fu" alt="null" width="48px" style="border-radius: 50%">
+    <div>
+      {{contact.dn}}
+    </div>
+  </div>
+
+</div>

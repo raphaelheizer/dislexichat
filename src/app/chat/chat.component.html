@@ -1,16 +1,34 @@
 <div class="container-fluid d-flex p-0 p-lg-5" id="mainframe">
-  <div class="flex-row" id="left-panel">
+  <div class="flex-row d-none d-md-block" id="left-panel">
 
+    <!-- todo: mudar a opção pra algum outro lugar -->
     <div class="bg-chat-bg top-bar">
-      <button class="btn btn-outline-primary btn-sm" (click)="addContact()">Adicionar</button>
+      <img class="img-avatar img-fluid" width="40px" [src]="user.photoURL" alt="profilepic">
+    </div>
+
+    <div class="top-bar d-flex justify-content-around">
+
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Buscar contato" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <span class="input-group-text" id="input-append-search-box">
+            <fa-icon [icon]="['fas','search']"></fa-icon>
+          </span>
+      <button class="btn btn-outline-primary btn-sm" (click)="addContact()">
+        <fa-icon [icon]="['fas','user-plus']" size="1x"></fa-icon>
+      </button>
+        </div>
+      </div>
+
+
     </div>
 
     <div id="contacts-body" class="overflow-auto">
 
-      <div id="contact-card" class="p-2 d-flex"
+      <div id="contact-card" class="p-2 d-flex contact-card"
            *ngFor="let contact of contacts | async"
            (click)="openChat(contact)"
-          tabindex="0">
+           tabindex="0">
 
         <img [src]="contact.fu" alt="null" width="48px" style="border-radius: 50%">
         <div>
@@ -21,16 +39,22 @@
     </div>
 
   </div>
+
   <div class="d-flex flex-column" id="chat-frame">
 
-    <div class="bg-chat-bg top-bar">
-      <img class="img-avatar img-fluid" width="40px" [src]="user.photoURL" alt="profilepic">
-      {{user.displayName}}
+    <div class="bg-chat-bg d-flex">
 
+      <div class="d-md-none align-self-center">
+        <button class="btn btn-outline-primary" (click)="contactsModal()">Contatos</button>
+      </div>
 
-      <button class="btn btn-outline-primary float-right" (click)="logout()">Logout</button>
+      <div class="bg-chat-bg top-bar">
+
+        <button class="btn btn-outline-primary float-right" (click)="logout()">
+          <fa-icon [icon]="['fas','sign-out-alt']" size="1x"></fa-icon>
+        </button>
+      </div>
     </div>
-
 
     <div id="msg-body" class="overflow-auto" #chatbody>
 
@@ -61,8 +85,10 @@
         <form [formGroup]="msgGroup" class="d-flex flex-grow-1 d-flex align-items-center">
           <input formControlName="msgInput" type="text" class="form-control ml-2 mr-2" placeholder="Esreve auqi!!!!!"
                  aria-label="Mensagem" (keydown.enter)="writeMessage()">
-          <button type="button" class="btn btn-outline-primary ml-2"
-                  (click)="writeMessage()">Enviar
+          <button type="button" class="pl-2 btn btn-outline-primary ml-2"
+                  (click)="writeMessage()"
+                  style="border-radius: 2rem">
+            <fa-icon [icon]="['far','paper-plane']"></fa-icon>
           </button>
         </form>
 
